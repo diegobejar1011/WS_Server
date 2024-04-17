@@ -1,10 +1,13 @@
-import { createServer } from "http";
+import express from 'express';
+import cors from 'cors';
+import { createServer } from "node:http";
 import { Server, Socket } from "socket.io";
-const httpServer = createServer();
-
+const app = express();
+const httpServer = createServer(app);
+app.use(cors());
+app.use(express.json());
 import { JWTMiddlware } from "./src/middleware/jwt_middleware";
 import { dataHandler } from "./src/handlers/data_handler";
-import { getNotifications } from "./src/services/get_notifications";
 import { db } from "./src/config/database_config";
 import { sendBuffering } from "./src/services/send_buffering";
 
