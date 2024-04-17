@@ -15,8 +15,11 @@ export const JWTMiddlware = (socket: Socket, token: string, next: Function) => {
     );
     const id_user = decoded.userId;
     socket.data.id_user = id_user;
+    console.log('Verificado');
     next();
   } catch (error: any) {
+    console.log('No verificado');
+    console.log(error);
     return next(new Error(error.message));
   }
 };

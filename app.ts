@@ -24,6 +24,7 @@ const io = new Server(httpServer, {
 });
 
 io.use((socket, next) => {
+  console.log(socket.handshake.auth.token);
   const token = socket.handshake.auth.token;
   JWTMiddlware(socket, token, next);
 });
