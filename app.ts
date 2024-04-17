@@ -4,7 +4,10 @@ import { createServer } from "node:http";
 import { Server, Socket } from "socket.io";
 const app = express();
 const httpServer = createServer(app);
-app.use(cors());
+app.use(cors({
+    origin: '*',
+    optionsSuccessStatus: 200
+}));
 app.use(express.json());
 import { JWTMiddlware } from "./src/middleware/jwt_middleware";
 import { dataHandler } from "./src/handlers/data_handler";
